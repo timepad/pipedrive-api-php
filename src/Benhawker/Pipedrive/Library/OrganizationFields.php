@@ -16,7 +16,7 @@ use Benhawker\Pipedrive\Exceptions\PipedriveMissingFieldError;
  * available, fetch one Deal and list its keys.
  *
  */
-class DealFields
+class OrganizationFields
 {
     /**
      * Hold the pipedrive cURL session
@@ -48,13 +48,13 @@ class DealFields
             throw new PipedriveMissingFieldError('You must include a "name" feild when inserting a dealField');
         }
 
-        return $this->curl->post('dealFields', $data);
+        return $this->curl->post('organizationFields', $data);
     }
 
     /**
      * @return array
      */
     public function getList() {
-        return $this->curl->get('dealFields');
+        return $this->curl->get('organizationFields');
     }
 }

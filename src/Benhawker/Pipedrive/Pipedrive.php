@@ -84,6 +84,16 @@ class Pipedrive
     protected $dealFields;
 
     /**
+     * @var Library\Organizations
+     */
+    protected $organizations;
+
+    /**
+     * @var Library\OrganizationFields
+     */
+    protected $organizationFields;
+
+    /**
      * Set up API url and load library classes
      *
      * @param string $apiKey   API key
@@ -111,6 +121,8 @@ class Pipedrive
         $this->activities = new Library\Activities($this);
         $this->notes      = new Library\Notes($this);
         $this->dealFields = new Library\DealFields($this);
+        $this->organizations = new Library\Organizations($this);
+        $this->organizationFields = new Library\OrganizationFields($this);
     }
 
     /**
@@ -172,4 +184,19 @@ class Pipedrive
     {
         return $this->dealFields;
     }
+
+    /**
+     * @return Library\Organizations
+     */
+    public function organizations() {
+        return $this->organizations;
+    }
+
+    /**
+     * @return Library\OrganizationFields
+     */
+    public function organizationFields() {
+        return $this->organizationFields;
+    }
+
 }

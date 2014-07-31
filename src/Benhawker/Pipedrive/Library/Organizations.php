@@ -14,7 +14,7 @@ use Benhawker\Pipedrive\Exceptions\PipedriveMissingFieldError;
  * field can be obtained from DealField.name.
  *
  */
-class Deals
+class Organizations
 {
     /**
      * Hold the pipedrive cURL session
@@ -32,7 +32,7 @@ class Deals
     }
 
     /**
-     * Returns a deal
+     * Returns an organization
      *
      * @param  int   $id pipedrive deals id
      * @return array returns detials of a deal
@@ -45,7 +45,7 @@ class Deals
     /**
      * Adds a deal
      *
-     * @param  array $data deal detials
+     * @param  array $data organization detials
      *
      * @throws \Benhawker\Pipedrive\Exceptions\PipedriveMissingFieldError
      * @return array returns detials of the deal
@@ -61,31 +61,21 @@ class Deals
     }
 
     /**
-     * Updates a deal
+     * Updates an organization
      *
-     * @param  int   $dealId pipedrives deal Id
-     * @param  array $data   new detials of deal
-     * @return array returns detials of a deal
+     * @param  int   $orgId
+     * @param  array $data new detials of organization
+     *
+     * @internal param int $dealId pipedrives organization Id
+     * @return array returns detials of an organization
      */
-    public function update($dealId, array $data = array())
+    public function update($orgId, array $data = array())
     {
-        return $this->curl->put('deals/' . $dealId, $data);
+        return $this->curl->put('organizations/' . $orgId, $data);
     }
 
     /**
-     * Moves deal to a new stage
-     *
-     * @param  int   $dealId  deal id
-     * @param  int   $stageId stage id
-     * @return array returns detials of the deal
-     */
-    public function moveStage($dealId, $stageId)
-    {
-        return $this->curl->put('deals/' . $dealId, array('stage_id' => $stageId));
-    }
-
-    /**
-     * Return array of deals
+     * Return array of organizations
      *
      * @param int $start
      * @param int $limit
@@ -97,6 +87,7 @@ class Deals
             "start" => $start,
             "limit" => $limit
         ];
-        return $this->curl->get('deals', $requestData);
+        return $this->curl->get('organizations', $requestData);
     }
+
 }

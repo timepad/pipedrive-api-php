@@ -64,7 +64,7 @@ class Pipedrive
     protected $persons;
     /**
      * Placeholder attritube for the pipedrive deals class
-     * @var Deals Object
+     * @var Library\Deals Object
      */
     protected $deals;
     /**
@@ -148,7 +148,7 @@ class Pipedrive
     /**
      * Returns the Pipedrive Deals Object
      *
-     * @return Deals Object
+     * @return Library\Deals Object
      */
     public function deals()
     {

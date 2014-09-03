@@ -43,6 +43,32 @@ class Organizations
     }
 
     /**
+     * Returns an organization
+     *
+     * @param  string $name pipedrive
+     * @return array returns detials of a organization
+     */
+    public function getByName($name)
+    {
+        $requestData = [
+            "start" => 0,
+            "limit" => 500,
+            "term"  => $name
+        ];
+        $aOrgs  = $this->curl->get('organizations/find', $requestData);
+
+        if ($aOrgs["data"]) {
+            foreach ($aOrgs["data"] as $organization) {
+                if ($organization["name"] == $name) {
+                    return $organization;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Adds a deal
      *
      * @param  array $data organization detials

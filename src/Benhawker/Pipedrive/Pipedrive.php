@@ -138,7 +138,7 @@ class Pipedrive
     /**
      * Returns the Pipedrive Persons Object
      *
-     * @return Persons Object
+     * @return Library\Persons Object
      */
     public function persons()
     {

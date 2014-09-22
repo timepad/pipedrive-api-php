@@ -99,4 +99,21 @@ class Deals
         ];
         return $this->curl->get('deals', $requestData);
     }
+
+    /**
+     * Return stages list
+     *
+     * @return bool|array
+     */
+    public function getListStages() {
+        $stages = $this->curl->get('stages', []);
+
+        if ($stages && isset($stages['success']) && $stages['success']) {
+            return $stages['data'];
+        }
+
+        return false;
+    }
+
+
 }

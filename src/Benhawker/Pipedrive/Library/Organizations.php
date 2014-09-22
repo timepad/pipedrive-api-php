@@ -79,11 +79,11 @@ class Organizations
     public function add(array $data)
     {
         //if there is no title set throw error as it is a required field
-        if (!isset($data['title'])) {
-            throw new PipedriveMissingFieldError('You must include a "title" feild when inserting a deal');
+        if (!isset($data['name'])) {
+            throw new PipedriveMissingFieldError('You must include a "name" feild when inserting a company');
         }
 
-        return $this->curl->post('deals', $data);
+        return $this->curl->post('organizations', $data);
     }
 
     /**

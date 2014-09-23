@@ -128,7 +128,7 @@ class Pipedrive
     /**
      * Returns the Pipedrive cURL Session
      *
-     * @return Curl Object
+     * @return Library\Curl Object
      */
     public function curl()
     {
@@ -158,7 +158,7 @@ class Pipedrive
     /**
      * Returns the Pipedrive Activities Object
      *
-     * @return Activities Object
+     * @return Library\Activities Object
      */
     public function activities()
     {
@@ -168,7 +168,7 @@ class Pipedrive
     /**
      * Returns the Pipedrive Notes Object
      *
-     * @return Notes Object
+     * @return Library\Notes Object
      */
     public function notes()
     {
@@ -178,7 +178,7 @@ class Pipedrive
     /**
      * Returns the Pipedrive DealFields Object
      *
-     * @return Activities Object
+     * @return Library\DealFields Object
      */
     public function dealFields()
     {

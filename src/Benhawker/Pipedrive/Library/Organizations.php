@@ -116,4 +116,48 @@ class Organizations
         return $this->curl->get('organizations', $requestData);
     }
 
+    /**
+     * Return array of organizations
+     *
+     * @param  string $name pipedrive
+     * @return array returns detials of a organization
+     */
+    public function search($name)
+    {
+        $requestData    = [
+            "start" => 0,
+            "limit" => 500,
+            "term"  => $name
+        ];
+        $aOrganizations = [];
+        $aOrgs          = $this->curl->get('organizations/find', $requestData);
+
+        if ($aOrgs["data"]) {
+            foreach ($aOrgs["data"] as $organization) {
+                if ($organization["name"] == $name) {
+                    $aOrganizations[$organization['id']]    = $organization;
+                }
+            }
+        }
+
+        return $aOrganizations;
+    }
+
+    /**
+     * Merge two pipedrive organizations
+     *
+     * @param $mainOrganizationId
+     * @param $organizationCloneId
+     *
+     * @return array
+     */
+    public function merge($mainOrganizationId, $organizationCloneId)
+    {
+        $requestData    = [
+            "merge_with_id" => (int) $mainOrganizationId,
+            "id"            => (int) $organizationCloneId
+        ];
+
+        return $this->curl->post("organizations/{$organizationCloneId}/merge", $requestData);
+    }
 }

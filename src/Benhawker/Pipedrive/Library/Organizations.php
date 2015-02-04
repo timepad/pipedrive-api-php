@@ -39,7 +39,7 @@ class Organizations
      */
     public function getById($id)
     {
-        return $this->curl->get('deals/' . $id);
+        return $this->curl->get('organizations/' . $id);
     }
 
     /**
@@ -159,5 +159,34 @@ class Organizations
         ];
 
         return $this->curl->post("organizations/{$organizationCloneId}/merge", $requestData);
+    }
+
+
+    public function getDeals($orgId, $status = null, $pipelineId = null) {
+        $requestData    = [
+            "start"     => 0,
+            "limit"     => 500,
+        ];
+
+        if ($status) {
+            $requestData['status']  = $status;
+        }
+
+        $result     = [];
+        $aDeals     = $this->curl->get("organizations/{$orgId}/deals", $requestData);
+
+        if ($aDeals["data"]) {
+            foreach ($aDeals["data"] as $aItemDeal) {
+                if ($pipelineId) {
+                    if ($aItemDeal["pipeline_id"] == $pipelineId) {
+                        $result[$aItemDeal['id']]   = $aItemDeal;
+                    }
+                } else {
+                    $result[$aItemDeal['id']]   = $aItemDeal;
+                }
+            }
+        }
+
+        return $result;
     }
 }

@@ -55,6 +55,6 @@ class OrganizationFields
      * @return array
      */
     public function getList() {
-        return $this->curl->get('organizationFields');
+        return $this->curl->get('organizationFields', ['limit' => 500]);
     }
 }

@@ -52,9 +52,16 @@ class OrganizationFields
     }
 
     /**
+     * @param int $start
+     * @param int $limit
      * @return array
      */
-    public function getList() {
-        return $this->curl->get('organizationFields', ['limit' => 500]);
+    public function getList($start = 0, $limit = 500) {
+        $requestData = [
+            "start" => $start,
+            "limit" => $limit
+        ];
+
+        return $this->curl->get('organizationFields', $requestData);
     }
 }
